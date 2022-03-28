@@ -25,5 +25,5 @@ while True:
             answer = str(round(int(formula[:index].strip()) / int(formula[index+1:].strip()), 1))
         else:
             answer = "Input error"
-        client.send(str(answer).encode())
+        client.send(answer.encode())
     client.close()

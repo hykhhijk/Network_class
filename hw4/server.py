@@ -10,7 +10,6 @@ while True:
     data = c.recv(1024)
     msg = data.decode()
     req = msg.split("\r\n")
-    print(req)
     req_msg = req[0].split()[1]
     if req_msg=="/index.html":
         c.send("HTTP/1.1 200 OK\r\n".encode())
@@ -24,14 +23,17 @@ while True:
         f = open("iot.png", "rb")
         data = f.read()
         c.send(data)
+    elif req_msg=="/favicon.ico":
+        c.send("HTTP/1.1 200 OK\r\n".encode())
+        c.send("Content-Type: image/x-icon \r\n\r\n".encode())
+        f = open("favicon.ico", "rb")
+        data = f.read()
+        c.send(data)        
     else:
         c.send("HTTP/1.1 404 Not Found\r\n\r\n".encode())
         c.send("<HTML><HEAD><TITLE>Not Found</TITLE></HEAD>".encode())
         c.send("<BODY>Not Found</BODY></HTML>".encode())
         break
-
-
-        
 
 
     c.close()
