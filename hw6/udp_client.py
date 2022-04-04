@@ -12,7 +12,8 @@ while True:
         sock.sendto(msg.encode(), ("localhost", port))
     elif msg[0:7] == "receive":
         sock.sendto(msg.encode(), ("localhost", port))
-        print(sock.recvfrom(BUF_SIZE)[0].decode())
+        msg, addr = sock.recvfrom(BUF_SIZE)
+        print(msg.decode())
     elif msg == "quit":
         sock.sendto(msg.encode(), ("localhost", port))
         sock.close()
