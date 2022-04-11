@@ -10,6 +10,8 @@ while True:
     msg = input("Input message to send: ")
     if msg[0:4]=="send":
         sock.sendto(msg.encode(), ("localhost", port))
+        msg, addr = sock.recvfrom(BUF_SIZE)
+        print(msg.decode())
     elif msg[0:7] == "receive":
         sock.sendto(msg.encode(), ("localhost", port))
         msg, addr = sock.recvfrom(BUF_SIZE)
