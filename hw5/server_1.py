@@ -1,6 +1,7 @@
 import socket
 import random
 import sys
+import time
 
 BUF_SIZE = 1024
 
